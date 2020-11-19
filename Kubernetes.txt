@@ -1,0 +1,25 @@
+List pods	kubectl get pod
+Get nodes	kubectl get node
+Get pods, show wide information	kubectl get pods -o wide
+Mark a node as unscheduled	kubectl cordon &lt;nodename&gt;
+Remove cordon from a node	kubectl uncordon &lt;nodename&gt;
+List deployments	kubectl get deployment
+Shell into a pod	kubectl exec --stdin --tty &lt;podname&gt; -- /bin/bash<div><br></div><div>The double dash (<code>--</code>) separates the arguments you want to pass to the command from the kubectl arguments.<br></div>
+Exec command in a pod	kubectl exec -t &lt;podname&gt; -- &lt;command&gt;
+Apply a file on the kubernetes cluster	kubectl apply -f &lt;filename&gt;
+Get the properties of a pod	kubectl describe pod &lt;podname&gt;
+Get labels of pods	kubectl get pods --show-labels
+Add label to pod	kubectl lable pod &lt;podname&gt; &lt;key&gt;=&lt;value&gt;
+filter pods based on labels	kubectl get pods --selector &lt;key&gt;=&lt;value&gt;<div><br></div><div>or</div><div><br></div><div>kubectl get pods -l &lt;key&gt;=&lt;value&gt;</div>
+Get all pods which are labelled either as environment = production or development	kubectl get pod -l 'env in (development, production)'
+What are labels in Kubernetes?	Mechanism to organize objects in K8S.<div>A label is a key-value pair without any predefined meaning.</div><div>You are free to choose labels you see fit (i.e.: pod is running in prod).</div><div><br></div><div>Note that labels are not restricted to pods, all objects can have labels.</div>
+What is a deployment in K8S?	A supervisor for pods giving fine-grained control over how and when a new pod version is rolled out and rolled back?
+How to get the deployments?	kubectl get deploy<br>
+How to get the replica sets?	kubectl get rs
+How to check the status of the deployment rollout?	kubectl rollout status deploy/&lt;deployment-name&gt;
+How to check the history of the rollouts?	kubectl rollout history deploy/&lt;deployment-name&gt;
+Roll back to a previous version in a deployment history?	kubectl rollout undo deploy/&lt;deployment-name&gt; --to-revision=&lt;revision-number&gt;
+What happens if you delete a namespace?	All the resource inside of it will be destroyed.
+How to referr a service in an arbitrary namespace?	&lt;serviceName&gt;.&lt;namespaceName&gt;.svc.cluster.local
+What is port forwarding?	Development time possibility to forward ports of services from K8S to local ports.
+How to port forward a service?	kubectl post-forward service/&lt;service-name&gt; &lt;local-target-port&gt;:&lt;service-port&gt;
