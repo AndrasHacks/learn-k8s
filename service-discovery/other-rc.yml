@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-sise
+  namespace: other
+spec:
+  replicas: 2
+  selector:
+    app: sise
+  template:
+    metadata:
+      name: sise-app-name
+      labels:
+        app: sise
+    spec:
+      containers:
+      - name: sise
+        image: quay.io/openshiftlabs/simpleservice:0.5.0
+        ports:
+        - containerPort: 9876
